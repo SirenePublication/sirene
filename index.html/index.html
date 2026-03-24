@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sirène Publication House</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+.book-slider{
+padding:40px;
+background:#fff5f7;
+text-align:center;
+}
+
+.slider-container{
+display:flex;
+gap:25px;
+overflow-x:auto;
+scroll-behavior:smooth;
+padding:20px;
+}
+
+.slider-container::-webkit-scrollbar{
+display:none;
+}
+
+.book-card{
+min-width:160px;
+max-width:160px:
+background:white;
+padding:8px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.15);
+flex-shrink:0;
+transition:transform 0.3s;
+}
+
+.book-card:hover{
+transform:scale(1.05);
+}
+
+.book-card img{
+width:100%;
+height: 220px;
+object-fit:cover;
+border-radius:8px;
+}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#fff1f2;
+color:#333;
+overflow-x:hidden;
+padding-top:0px;
+}
+
+/* NAVBAR */
+
+header{
+position:fixed;
+top:0;
+width:100%;
+background:#ff8fab;
+padding:15px 8%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+color:white;
+z-index:1000;
+}
+
+header h1{
+font-family:'Playfair Display',serif;
+}
+@media (max-width:768px){
+body{
+padding-top:140px;
+}
+}
+nav a{
+color:white;
+margin-left:20px;
+text-decoration:none;
+}
+.menu-toggle{
+display:none;
+font-size:30px;
+cursor:pointer;
+}
+
+/* MOBILE MENU */
+@media (max-width:768px){
+
+nav{
+display:none;
+flex-direction:column;
+position:absolute;
+top:70px;
+right:0;
+background:#8b0000;
+width:220px;
+padding:20px;
+}
+
+nav a{
+display:block;
+margin:10px 0;
+}
+
+.menu-toggle{
+display:block;
+color:white;
+}
+
+nav.active{
+display:flex;
+}
+
+}
+
+/* HERO */
+
+.hero{
+position:relative;
+height:90vh;
+margin-top:0;
+padding-top:0;
+}
+
+.hero img{
+width:100%;
+height:100%;
+object-fit:cover;
+filter:brightness(55%);
+}
+
+.hero-text{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+color:white;
+text-align:center;
+max-width:650px;
+}
+
+.hero-text h2{
+font-size:55px;
+font-family:'Playfair Display',serif;
+}
+
+.hero-text p{
+margin-top:15px;
+font-size:18px;
+}
+
+.hero-text button{
+margin-top:20px;
+padding:12px 25px;
+border:none;
+background:#ff4d6d;
+color:white;
+border-radius:10px;
+cursor:pointer;
+}
+
+/* SECTION */
+
+.section{
+padding:90px 10%;
+text-align:center;
+}
+
+.section h2{
+font-size:40px;
+margin-bottom:25px;
+font-family:'Playfair Display',serif;
+}
+
+/* TEAM */
+
+.team-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.team-card{
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
+transition:0.3s;
+}
+
+.team-card:hover{
+transform:translateY(-8px);
+}
+
+.team-card img{
+width:110px;
+height:110px;
+border-radius:50%;
+object-fit:cover;
+margin-bottom:10px;
+}
+
+/* BOOK SLIDER */
+
+.book-container{
+overflow:hidden;
+position:relative;
+}
+
+.book-slider{
+display:flex;
+gap:20px;
+animation:scroll 25s linear infinite;
+}
+
+.book{
+min-width:180px;
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.book img{
+width:100%;
+border-radius:8px;
+}
+.slider-container{
+width:100%;
+overflow-x:auto;
+overflow-y:hidden;
+scroll-behavior:smooth;
+cursor:grab;
+}
+
+.slider-container::-webkit-scrollbar{
+display:none;
+}
+
+.slider-track{
+display:flex;
+gap:25px;
+width:max-content;
+padding:20px;
+}
+
+.book-card{
+min-width:200px;
+flex-shrink:0;
+background:white;
+padding:10px;
+border-radius:10px;
+box-shadow:0 4px 10px rgba(0,0,0,0.15);
+text-align:center;
+}
+@keyframes scroll{
+
+0%{
+transform:translateX(0);
+}
+
+100%{
+transform:translateX(-50%);
+}
+
+}
+
+button {
+background:#ff4d6d;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+}
+
+
+
+/* MAGAZINES */
+
+.mag-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:30px;
+max-width:800px;
+margin:auto;
+padding:20px;
+}
+
+.mag-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+text-align:center;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:10px;
+
+transition:0.3s;
+}
+
+.mag-card:hover{
+transform:translateY(-5px);
+}
+
+.mag-card img{
+width:120px;
+height:160px;
+object-fit:cover;
+border-radius:6px;
+}
+
+/* COMMUNITY */
+
+.community-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.community-card{
+background:white;
+padding:20px;
+border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+}
+
+.whatsapp{
+background:#25D366;
+border:none;
+color:white;
+padding:10px 15px;
+border-radius:8px;
+margin-top:10px;
+cursor:pointer;
+}
+
+/* CONTACT */
+
+.contact form{
+max-width:400px;
+margin:auto;
+}
+
+.contact input,
+.contact textarea{
+width:100%;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ddd;
+}
+
+.contact button{
+background:#ff4d6d;
+border:none;
+color:white;
+padding:10px 20px;
+border-radius:8px;
+}
+
+/* WAVE DIVIDER */
+
+.wave{
+margin-top:-5px;
+}
+
+/* FOOTER */
+
+footer{
+background:#ff8fab;
+color:white;
+text-align:center;
+padding:20px;
+margin-top:40px;
+}
+
+/* SCROLL ANIMATION */
+
+.fade{
+opacity:0;
+transform:translateY(40px);
+transition:1s;
+}
+
+.fade.show{
+opacity:1;
+transform:translateY(0);
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+<style>
+
+.hero-logo{
+width:80px;
+height:80px;
+display:block;
+margin:0 auto 10px auto;
+border-radius:50%;
+object-fit:cover;
+}
+
+.hero-text{
+text-align:center;
+color:white;
+}
+
+</style>
+<header>
+
+<h1>Sirène Publication House</h1>
+
+<div class="menu-toggle" onclick="toggleMenu()">☰</div>
+
+<nav id="nav-menu">
+
+<a href="#about">About</a>
+<a href="#team">Team</a>
+<a href="#books">Books and Anthologies</a>
+<a href="#magazines">Magazines</a>
+<a href="#community">Community</a>
+<a href="#contact">Contact</a>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66">
+<div class="hero-text" style="text-align:center; color:white;">
+<img src="logo.jpeg" 
+style="width:180px; height:180px; border-radius:50%; object-fit:cover; margin-bottom:20px; background: transparent; filter: brightness(1.2) contrast(1.1);">
+
+<h2>Sirène Publication House</h2>
+
+<p>
+FROM MANUSCRIPT TO MASTERPIECE
+</p>
+
+
+
+</div>
+
+</section>
+
+
+<!-- ABOUT -->
+
+<section id="about" class="section fade">
+
+<h2>About Sirène</h2>
+
+<p>
+
+Siréne is a French word. It means a mermaid.
+Siréne provides anthologies with different themes and daily challenges with different themes and genres. Its motive is to help literature enthusiasts and passionate writers dive into the ocean of literature. The history of literature is vast. We don't know its end. The deeper we dive, the more mysteries we encounter, just like in the city of Dwaraka.
+Come, dive and thrive with us in this journey.
+
+</p>
+
+</section>
+
+
+<!-- TEAM -->
+
+<section id="team" class="section fade">
+
+<h2>Core Team</h2>
+
+<div class="team-grid">
+
+<div class="team-card">
+
+<img src="akira.png">
+
+<h3>AKIRA SRAVANI</h3>
+
+<p>Founder</p>
+
+</div>
+
+
+<div class="team-card">
+
+<img src="sneha.png">
+
+<h3>SNEHA SAXENA</h3>
+
+<p>Co-Founder</p>
+
+</div>
+
+
+<div class="team-card">
+
+<img src="anshulika.png">
+
+<h3>ANSHULIKA PRACHI</h3>
+
+<p>Social Media Manager</p>
+
+</div>
+
+
+<div class="team-card">
+
+<img src="navya.png">
+
+<h3>NAVYA</h3>
+
+<p>English Reviewer</p>
+
+</div>
+
+
+<div class="team-card">
+
+<img src="sanjana.png">
+
+<h3>SANJANA PORWAL</h3>
+
+<p>Hindi Reviewer</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- BOOKS -->
+<style>
+  /* This targets images inside your book div */
+  .book img {
+    width: 200px; /* Adjust this number to make it smaller or larger */
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+</style>
+
+<section id="books" class="section fade
+<section class="book-slider">
+<h2>Books and Anthologies</h2>
+
+<div class="slider-container" id="slider">
+<div class="slider-track" id="track">
+
+<div class="book-card"><img src="rail.png"><h4>The Rail That Stops Every Way</h4>
+ <a href="https://amzn.in/d/0eNLB7DW"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="poetry.png"><h4>Poetry Materia Medica</h4> 
+<a href="https://www.amazon.in/dp/B0FPX5QQJK"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="morning.jpeg"><h4>Morning Love Whispers</h4>
+ <a href="https://amzn.in/d/06h9W0Wo"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="eyes.jpeg"><h4>If I Could Read Eyes</h4>
+ <a href="https://amzn.in/d/01hLg6IX"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="crime.jpeg"><h4>The Crime Scene</h4>
+ <a href="https://amzn.in/d/01NRnxes"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="universe.jpeg"><h4>The Universe</h4>
+ <a href="https://amzn.in/d/04rdQGeH"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="ocean.jpeg"><h4>Dreams Of Ocean Of Poems</h4>
+ <a href="https://amzn.in/d/020Q6KLP"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="selfcontrol.jpeg"><h4>The Art Of Self Control</h4>
+ <a href="https://amzn.in/d/0dNkLerW"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="butterfly.jpeg"><h4>The Butterfly</h4>
+ <a href="https://amzn.in/d/00X2AUI5"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="autumn.jpeg"><h4>Lovely Autumn</h4>
+ <a href="https://amzn.in/d/0cFrYdy3"><button>Read</button></a>
+</div>
+
+<div class="book-card"><img src="lostverse.jpeg"><h4>The Lost Verse</h4>
+ <a href="https://amzn.in/d/0dhUD2yt"><button>Read</button></a>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MAGAZINES -->
+
+<style>
+  /* Updated width to be smaller (e.g., 150px) */
+  .mag-card img {
+    width: 150px; 
+    height: auto;
+    display: block;
+    margin-bottom: 10px;
+  }
+</style>
+<section id="magazines" class="section fade">
+
+<h2>Magazines</h2>
+
+<div class="mag-grid">
+
+<div class="mag-card"><img src="summer.png"><h4>Summer Tales</h4> <a href="https://www.canva.com/design/DAGHvnxbWBc/XuG007DxKlgCuKBnf_n4Ew/edit?utm_content=DAGHvnxbWBc&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"><button>Read</button></a>
+ </div>
+
+<div class="mag-card"><img src="snow.png"><h4>Under The Blanket Of Snow</h4> <a href="https://www.canva.com/design/DAFzxcscEOU/fwwCDIUNtbWFN-oXzo9ELg/edit?utm_content=DAFzxcscEOU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"><button>Read</button></a>
+</div>
+
+
+
+</section>
+
+
+<!-- COMMUNITY -->
+
+<section id="community" class="section fade">
+
+<h2>Communities</h2>
+
+<div class="community-grid">
+
+<div class="community-card">
+
+<h3>Pixie Hollow Letters</h3>
+
+<p>A welcoming place for poets to share and grow.</p>
+
+<a href="https://chat.whatsapp.com/Kmy5ebTKxBdGwDbA4qR9PK?mode=gi_t
+
+Pixie Hollow Letters"><button class="whatsapp">Join WhatsApp</button></a>
+
+</div>
+
+<div class="community-card">
+
+<h3>Alpha's winged Odyssey</h3>
+
+<p>Daily Challanges for your inner poet.</p>
+
+<a href="https://chat.whatsapp.com/CDUm1I7tVD2FGWXtztZGqM?mode=gi_t
+
+ALPHA'S WINGED ODYSSEY"><button class="whatsapp">Join WhatsApp</button></a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CONTACT -->
+<section id="contact" class="section contact fade">
+
+<h2>Contact</h2>
+
+<p><strong>Email:</strong> sirenepublications@gmail.com</p>
+                <p><strong>Phone:</strong> +91 93912 45793</p>
+                <a href="https://www.instagram.com/sirenepublishinghouse?igsh=Z3JhZjVjbjd1Nm5p"><button>Join Us On Instagram</button></a>
+
+                
+
+
+</section>
+
+
+<footer>
+
+<p>© 2026 Sirène Publication House</p>
+
+</footer>
+
+
+<script>
+
+/* Scroll Animation */
+
+const faders=document.querySelectorAll(".fade");
+
+window.addEventListener("scroll",()=>{
+
+faders.forEach(el=>{
+
+const top=el.getBoundingClientRect().top;
+
+if(top<window.innerHeight-100){
+
+el.classList.add("show");
+
+}
+
+});
+
+});
+
+</script>
+<script>
+
+document.addEventListener("DOMContentLoaded", function(){
+
+const slider = document.getElementById("slider");
+const track = document.getElementById("track");
+
+// duplicate books for infinite scroll
+track.innerHTML += track.innerHTML;
+
+// start from middle
+slider.scrollLeft = track.scrollWidth / 2;
+
+let speed = 1;   // increase speed so movement is visible
+let auto = true;
+
+function autoScroll(){
+
+if(auto){
+slider.scrollLeft = slider.scrollLeft + speed;
+
+// reset position for infinite loop
+if(slider.scrollLeft >= track.scrollWidth){
+slider.scrollLeft = track.scrollWidth / 2;
+}
+
+if(slider.scrollLeft <= 0){
+slider.scrollLeft = track.scrollWidth / 2;
+}
+
+}
+
+requestAnimationFrame(autoScroll);
+
+}
+
+// start animation
+autoScroll();
+
+// pause when user interacts
+slider.addEventListener("mouseenter", ()=> auto=false);
+slider.addEventListener("mouseleave", ()=> auto=true);
+
+slider.addEventListener("touchstart", ()=> auto=false);
+slider.addEventListener("touchend", ()=> auto=true);
+
+});
+
+</script>
+<script>
+
+function toggleMenu(){
+document.getElementById("nav-menu").classList.toggle("active");
+}
+
+</script>
+</body>
+</html>
